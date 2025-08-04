@@ -452,7 +452,7 @@ function handleMessage(input) {
   if (response) {
     setTimeout(() => {
       if (Array.isArray(response.text)) {
-  response.text.forEach(t => addMessage(t, "bot"));
+  addMessage(response.text.join(''), "bot");
 } else {
   addMessage(response.text, "bot");
 }
@@ -485,4 +485,5 @@ window.onload = startChat;
    </script>
 </body>
 </html>
+
 

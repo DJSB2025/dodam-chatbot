@@ -416,14 +416,14 @@ function addMessage(text, sender) {
   const chatBox = document.getElementById("chat-box");
   const message = document.createElement("div");
   message.className = `message ${sender}`;
-  const isHTML = /<img|<div|<br|<b|<span/i.test(text);
-
-  if (isHTML) {
-    message.innerHTML = text;
-  } else {
-    message.innerHTML = text.replace(/\n/g, "<br>");
-  }
-
+  
+  // 줄바꿈 처리 (HTML 포함 여부와 관계없이 \n → <br>)
+  message.innerHTML = text.replace(/\n/g, "<br>");
+  
+  // DOM에 메시지 추가 및 스크롤 아래로
+  chatBox.appendChild(message);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
   chatBox.appendChild(message);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
@@ -485,5 +485,6 @@ window.onload = startChat;
    </script>
 </body>
 </html>
+
 
 
